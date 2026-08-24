@@ -1,7 +1,17 @@
 <% layout("/layouts/boilerplate") %>
-<div class="row mt-3">
-  <div class="col-8 offset-2">
-    <h3>Create a New Listing</h3>
+
+<div class="form-page-container">
+  <div class="form-card">
+    <div class="form-header">
+      <div class="brand-icon-wrapper mx-auto mb-3">
+        <i class="fa-solid fa-house-chimney-medical"></i>
+      </div>
+      <h2 class="form-header-title">Host Your Space</h2>
+      <p class="form-header-subtitle">
+        Fill in the details below to publish your property on Wanderlust and start welcoming guests.
+      </p>
+    </div>
+
     <form
       method="POST"
       action="/listings"
@@ -9,88 +19,117 @@
       class="needs-validation"
       enctype="multipart/form-data"
     >
-      <div class="mb-3">
-        <label for="title" class="form-label">Title</label>
+      <!-- Title -->
+      <div class="form-group-custom">
+        <label for="title" class="form-label-custom">Listing Title</label>
         <input
           type="text"
           id="title"
           name="listing[title]"
-          placeholder="Add a catchy title"
-          class="form-control"
+          placeholder="e.g. Luxury Seaview Villa in North Goa"
+          class="form-control-custom"
           required
         />
-        <div class="valid-feedback">Title looks good</div>
-        <div class="invalid-feedback">Please enter a valid title</div>
+        <div class="valid-feedback">Title looks great!</div>
+        <div class="invalid-feedback">Please provide a descriptive title.</div>
       </div>
-      <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
+
+      <!-- Description -->
+      <div class="form-group-custom">
+        <label for="description" class="form-label-custom">Description</label>
         <textarea
-          type="text"
           id="description"
           name="listing[description]"
-          class="form-control"
+          rows="4"
+          placeholder="Describe the atmosphere, unique views, amenities, and nearby attractions..."
+          class="form-control-custom"
           required
         ></textarea>
-        <div class="invalid-feedback">Please enter a short description</div>
+        <div class="invalid-feedback">Please provide a short description for your listing.</div>
       </div>
-      <!-- <div class="mb-3">
-        <label for="image" class="form-label">Image Link</label>
-        <input
-          type="text"
-          id="image"
-          name="listing[image]"
-          placeholder="enter image URL/Link"
-          class="form-control"
-        />
-      </div> -->
-      <div class="mb-3">
-        <label for="image" class="form-label">Upload Listing image</label>
-        <input
-          type="file"
-          id="image"
-          name="listing[image]"
-          class="form-control"
-          required
-        />
-      </div>
-      <div class="row">
-        <div class="mb-3 col-md-4">
-          <label for="price" class="form-label">Price</label>
+
+      <!-- Image Upload Dropzone -->
+      <div class="form-group-custom">
+        <label class="form-label-custom">Property Cover Photo</label>
+        <div class="file-upload-zone">
           <input
-            id="price"
-            name="listing[price]"
-            placeholder="1200"
-            class="form-control"
+            type="file"
+            id="image"
+            name="listing[image]"
+            class="file-input-hidden"
+            accept="image/*"
             required
           />
-          <div class="invalid-feedback">Price should be valid</div>
+          <div class="file-upload-icon">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+          </div>
+          <div class="file-upload-text" id="fileUploadText">Click or drag image to upload</div>
+          <div class="file-upload-hint">Supports high-res JPG, PNG, WEBP</div>
         </div>
-        <div class="mb-3 col-md-8">
-          <label for="country" class="form-label">Country</label>
-          <input
-            type="text"
-            id="country"
-            name="listing[country]"
-            placeholder="India"
-            class="form-control"
-            required
-          />
-          <div class="invalid-feedback">Country name should be valid</div>
+        <div id="imagePreviewBox" class="image-preview-box">
+          <img id="imagePreviewImg" src="" alt="Selected Preview" />
+        </div>
+        <div class="invalid-feedback">Please choose an image for your listing.</div>
+      </div>
+
+      <!-- Price & Country Row -->
+      <div class="row g-3">
+        <div class="col-md-5">
+          <div class="form-group-custom">
+            <label for="price" class="form-label-custom">Price (&#8377; / night)</label>
+            <div class="input-group">
+              <input
+                type="number"
+                id="price"
+                name="listing[price]"
+                placeholder="2500"
+                class="form-control-custom"
+                min="1"
+                required
+              />
+            </div>
+            <div class="invalid-feedback">Please enter a valid nightly price.</div>
+          </div>
+        </div>
+
+        <div class="col-md-7">
+          <div class="form-group-custom">
+            <label for="country" class="form-label-custom">Country</label>
+            <input
+              type="text"
+              id="country"
+              name="listing[country]"
+              placeholder="e.g. India"
+              class="form-control-custom"
+              required
+            />
+            <div class="invalid-feedback">Please enter the country.</div>
+          </div>
         </div>
       </div>
-      <div class="mb-3">
-        <label for="location" class="form-label">Location</label>
+
+      <!-- Location -->
+      <div class="form-group-custom">
+        <label for="location" class="form-label-custom">Location / City</label>
         <input
           type="text"
           id="location"
           name="listing[location]"
-          placeholder="Jaipur, Rajasthan"
-          class="form-control"
+          placeholder="e.g. Calangute, Goa"
+          class="form-control-custom"
           required
         />
-        <div class="invalid-feedback">Location should be valid</div>
+        <div class="invalid-feedback">Please enter a valid location or city.</div>
       </div>
-      <button class="btn btn-dark add-btn mt-3">Add</button>
+
+      <!-- Submit Button -->
+      <button class="btn btn-primary-gradient mt-3 py-3" type="submit">
+        <i class="fa-solid fa-circle-check me-1"></i> Publish Listing
+      </button>
+
+      <div class="form-footer-note">
+        Need to make changes later? You can update your listing at any time.
+      </div>
     </form>
   </div>
 </div>

@@ -1,64 +1,65 @@
-<style>
-  .search-btn {
-    background-color: #fe424d;
-    color: #fff;
-    border-radius: 25px;
-    padding: 0 1rem 0 1rem;
-  }
-  .search-btn:hover {
-    background-color: #fe424d;
-    color: #fff;
-  }
-  .search-btn i {
-    display: inline;
-    margin-right: 0.5rem;
-  }
+<nav class="navbar navbar-expand-lg wander-navbar sticky-top">
+  <div class="container">
+    <!-- Brand Logo -->
+    <a class="navbar-brand" href="/listings">
+      <div class="brand-icon-wrapper">
+        <i class="fa-regular fa-compass"></i>
+      </div>
+      <span>Wanderlust</span>
+    </a>
 
-  .search-inp {
-    border-radius: 25px;
-    padding: 0.5rem 3rem 0.5rem 3rem;
-    font-size: 1rem;
-  }
-</style>
-
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/listings"
-      ><i class="fa-regular fa-compass"></i
-    ></a>
+    <!-- Mobile Toggler -->
     <button
-      class="navbar-toggler"
+      class="navbar-toggler border-0 shadow-none p-2"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#navbarNavAltMarkup"
+      data-bs-target="#navbarMainContent"
+      aria-controls="navbarMainContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
     >
-      <span class="navbar-toggler-icon"></span>
+      <i class="fa-solid fa-bars-staggered fs-4 text-dark"></i>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" href="/listings">Explore</a>
-      </div>
 
-      <div class="navbar-nav ms-auto">
-        <form class="d-flex" role="search">
+    <!-- Collapsible Content -->
+    <div class="collapse navbar-collapse" id="navbarMainContent">
+      <!-- Centered Live Search -->
+      <div class="mx-auto my-3 my-lg-0 nav-search-wrapper">
+        <form class="nav-search-pill" action="/listings" method="GET">
           <input
-            class="form-control me-2 search-inp"
+            class="nav-search-input quick-search-input"
             type="search"
-            placeholder="Search destinations"
+            name="q"
+            placeholder="Search destinations, villas..."
+            aria-label="Search"
           />
-          <button class="btn search-btn" type="submit">
-            <i class="fa-solid fa-magnifying-glass"></i>Search
+          <button class="nav-search-btn" type="submit" aria-label="Search">
+            <i class="fa-solid fa-magnifying-glass"></i>
           </button>
         </form>
       </div>
 
-      <div class="navbar-nav ms-auto">
-        <a class="nav-link" href="/listings/new">Airbnb your home</a>
-        <% if(!currUser){ %>
-        <a class="nav-link" href="/signup"><b>Sign up</b></a>
-        <a class="nav-link" href="/login"><b>Log in</b></a>
-        <% } %> <% if(currUser){ %>
-        <a class="nav-link" href="/logout"><b>Log out</b></a>
+      <!-- Right Navigation Actions -->
+      <div class="navbar-nav ms-auto align-items-lg-center gap-2">
+        <a class="nav-link nav-host-btn" href="/listings/new">
+          <i class="fa-solid fa-house-chimney me-1 text-danger"></i> Airbnb your home
+        </a>
+
+        <% if (!currUser) { %>
+          <a class="btn nav-auth-btn nav-btn-login" href="/login">Log in</a>
+          <a class="btn nav-auth-btn nav-btn-signup" href="/signup">Sign up</a>
+        <% } else { %>
+          <div class="d-flex align-items-center gap-2">
+            <div class="user-profile-badge">
+              <div class="user-avatar-circle">
+                <%= currUser.username.charAt(0).toUpperCase() %>
+              </div>
+              <span class="user-name-label"><%= currUser.username %></span>
+            </div>
+            <a class="btn nav-auth-btn nav-btn-login text-danger" href="/logout" title="Log out">
+              <i class="fa-solid fa-arrow-right-from-bracket me-1"></i> Log out
+            </a>
+          </div>
         <% } %>
       </div>
     </div>

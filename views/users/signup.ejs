@@ -1,43 +1,66 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="row mt-3">
-  <h1 class="col-6 offset-3">SignUp on Wanderlust</h1>
-  <div class="col-6 offset-3">
+<div class="form-page-container" style="max-width: 480px;">
+  <div class="form-card">
+    <div class="form-header">
+      <div class="brand-icon-wrapper mx-auto mb-3">
+        <i class="fa-solid fa-user-plus"></i>
+      </div>
+      <h2 class="form-header-title">Create Account</h2>
+      <p class="form-header-subtitle">Join Wanderlust to explore and book extraordinary stays.</p>
+    </div>
+
     <form action="/signup" method="POST" class="needs-validation" novalidate>
-      <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
+      <div class="form-group-custom">
+        <label for="username" class="form-label-custom">Username</label>
         <input
           name="username"
           id="username"
           type="text"
-          class="form-control"
+          placeholder="Choose a unique username"
+          class="form-control-custom"
           required
         />
-        <div class="valid-feedback">Looks good</div>
+        <div class="valid-feedback">Looks great!</div>
+        <div class="invalid-feedback">Please choose a username.</div>
       </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
+
+      <div class="form-group-custom">
+        <label for="email" class="form-label-custom">Email Address</label>
         <input
           name="email"
           id="email"
           type="email"
-          class="form-control"
+          placeholder="you@example.com"
+          class="form-control-custom"
           required
         />
-        <div class="valid-feedback">Looks good</div>
+        <div class="valid-feedback">Email looks good!</div>
+        <div class="invalid-feedback">Please enter a valid email address.</div>
       </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
+
+      <div class="form-group-custom">
+        <label for="password" class="form-label-custom">Password</label>
         <input
           name="password"
           id="password"
           type="password"
-          class="form-control"
+          placeholder="Create a secure password"
+          class="form-control-custom"
+          minlength="6"
           required
         />
-        <div class="valid-feedback">Looks good</div>
+        <div class="valid-feedback">Strong password!</div>
+        <div class="invalid-feedback">Password must be at least 6 characters.</div>
       </div>
-      <button class="btn btn-success">SignUp</button>
+
+      <button class="btn btn-primary-gradient mt-3 py-3" type="submit">
+        <i class="fa-solid fa-sparkles me-1"></i> Get Started
+      </button>
+
+      <div class="form-footer-note">
+        Already have an account? <a href="/login">Log in here</a>
+      </div>
     </form>
   </div>
 </div>

@@ -1,10 +1,8 @@
 (() => {
   "use strict";
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  // Bootstrap Form Validation
   const forms = document.querySelectorAll(".needs-validation");
-
-  // Loop over them and prevent submission
   Array.from(forms).forEach((form) => {
     form.addEventListener(
       "submit",
@@ -13,10 +11,149 @@
           event.preventDefault();
           event.stopPropagation();
         }
-
         form.classList.add("was-validated");
       },
       false
     );
+  });
+
+  // Auto-dismiss Flash Alerts
+  const flashAlerts = document.querySelectorAll(".toast-custom");
+  flashAlerts.forEach((alert) => {
+    setTimeout(() => {
+      alert.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+      alert.style.opacity = "0";
+      alert.style.transform = "translateY(-20px)";
+      setTimeout(() => {
+        const container = alert.closest(".flash-container");
+        if (container) container.remove();
+        else alert.remove();
+      }, 500);
+    }, 4500);
+  });
+
+  // Tax Switch Toggle Handler
+  const taxSwitch = document.getElementById("taxSwitchCheck");
+  if (taxSwitch) {
+    taxSwitch.addEventListener("change", () => {
+      const taxBadges = document.querySelectorAll(".tax-badge-info");
+      taxBadges.forEach((badge) => {
+        badge.style.display = taxSwitch.checked ? "inline-block" : "none";
+      });
+    });
+  }
+
+  // Wishlist Heart Button Favorite Toggle
+  const wishlistButtons = document.querySelectorAll(".card-heart-btn");
+  wishlistButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      btn.classList.toggle("favorited");
+      const icon = btn.querySelector("i");
+      if (icon) {
+        if (btn.classList.contains("favorited")) {
+          icon.classList.remove("fa-regular");
+          icon.classList.add("fa-solid");
+          icon.style.color = "#ff385c";
+        } else {
+          icon.classList.remove("fa-solid");
+          icon.classList.add("fa-regular");
+          icon.style.color = "";
+        }
+      }
+    });
+  });
+
+  // File Upload Preview
+  const fileInputs = document.querySelectorAll(".file-input-hidden");
+  fileInputs.forEach((input) => {
+    input.addEventListener("change", function () {
+      const previewBox = document.getElementById("imagePreviewBox");
+      const previewImg = document.getElementById("imagePreviewImg");
+      const uploadText = document.getElementById("fileUploadText");
+      if (this.files && this.files[0] && previewBox && previewImg) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          previewImg.src = e.target.result;
+          previewBox.style.display = "block";
+          if (uploadText) uploadText.innerText = "Selected: " + this.files[0].name;
+        };
+        reader.readAsDataURL(this.files[0]);
+      }
+    });
+  });
+
+  // Category Filter Pill Click (Client-side interactive filter)
+  const filterPills = document.querySelectorAll(".filter-pill");
+  const listingCards = document.querySelectorAll(".listing-item-col");
+
+  filterPills.forEach((pill) => {
+    pill.addEventListener("click", function () {
+      filterPills.forEach((p) => p.classList.remove("active"));
+      this.classList.add("active");
+
+      const category = this.getAttribute("data-category");
+      if (!category || category === "all") {
+        listingCards.forEach((card) => (card.style.display = "block"));
+        checkEmptyState();
+        return;
+      }
+
+      let visibleCount = 0;
+      listingCards.forEach((card) => {
+        const title = card.getAttribute("data-title")?.toLowerCase() || "";
+        const desc = card.getAttribute("data-description")?.toLowerCase() || "";
+        const location = card.getAttribute("data-location")?.toLowerCase() || "";
+        const country = card.getAttribute("data-country")?.toLowerCase() || "";
+
+        const match =
+          title.includes(category.toLowerCase()) ||
+          desc.includes(category.toLowerCase()) ||
+          location.includes(category.toLowerCase()) ||
+          country.includes(category.toLowerCase());
+
+        if (match) {
+          card.style.display = "block";
+          visibleCount++;
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      checkEmptyState();
+    });
+  });
+
+  function checkEmptyState() {
+    const emptyState = document.getElementById("emptyListingState");
+    if (!emptyState) return;
+    const anyVisible = Array.from(listingCards).some(
+      (c) => c.style.display !== "none"
+    );
+    emptyState.style.display = anyVisible ? "none" : "block";
+  }
+
+  // Quick Client Search Input Filter
+  const searchInputs = document.querySelectorAll(".quick-search-input");
+  searchInputs.forEach((inp) => {
+    inp.addEventListener("input", function () {
+      const q = this.value.toLowerCase().trim();
+      if (!listingCards.length) return;
+
+      listingCards.forEach((card) => {
+        const title = card.getAttribute("data-title")?.toLowerCase() || "";
+        const location = card.getAttribute("data-location")?.toLowerCase() || "";
+        const country = card.getAttribute("data-country")?.toLowerCase() || "";
+
+        if (title.includes(q) || location.includes(q) || country.includes(q)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      checkEmptyState();
+    });
   });
 })();

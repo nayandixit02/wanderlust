@@ -1,30 +1,53 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="row mt-3">
-  <h1 class="col-6 offset-3">Login</h1>
-  <div class="col-6 offset-3">
+<div class="form-page-container" style="max-width: 480px;">
+  <div class="form-card">
+    <div class="form-header">
+      <div class="brand-icon-wrapper mx-auto mb-3">
+        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+      </div>
+      <h2 class="form-header-title">Welcome Back</h2>
+      <p class="form-header-subtitle">Log in to manage your stays, reviews, and bookings.</p>
+    </div>
+
     <form action="/login" method="POST" class="needs-validation" novalidate>
-      <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-        <input
-          name="username"
-          id="username"
-          type="text"
-          class="form-control"
-          required
-        />
+      <div class="form-group-custom">
+        <label for="username" class="form-label-custom">Username</label>
+        <div class="position-relative">
+          <input
+            name="username"
+            id="username"
+            type="text"
+            placeholder="Enter your username"
+            class="form-control-custom"
+            required
+          />
+        </div>
+        <div class="invalid-feedback">Please enter your username.</div>
       </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input
-          name="password"
-          id="password"
-          type="password"
-          class="form-control"
-          required
-        />
+
+      <div class="form-group-custom">
+        <label for="password" class="form-label-custom">Password</label>
+        <div class="position-relative">
+          <input
+            name="password"
+            id="password"
+            type="password"
+            placeholder="Enter your password"
+            class="form-control-custom"
+            required
+          />
+        </div>
+        <div class="invalid-feedback">Please enter your password.</div>
       </div>
-      <button class="btn btn-success">Login</button>
+
+      <button class="btn btn-primary-gradient mt-3 py-3" type="submit">
+        <i class="fa-solid fa-lock me-1"></i> Log In
+      </button>
+
+      <div class="form-footer-note">
+        Don't have an account? <a href="/signup">Sign up for Wanderlust</a>
+      </div>
     </form>
   </div>
 </div>

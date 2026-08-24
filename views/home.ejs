@@ -1,62 +1,182 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to Exploro</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        color: #fff;
-      }
-      .hero-section {
-        text-align: center;
-      }
-      .hero-title {
-        font-size: 4rem;
-        font-weight: bold;
-        margin-bottom: 1rem;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-      }
-      .hero-subtitle {
-        font-size: 1.5rem;
-        margin-bottom: 2rem;
-        opacity: 0.9;
-      }
-      .cta-buttons {
-        gap: 1rem;
-      }
-      .btn-primary {
-        padding: 0.75rem 2rem;
-        font-size: 1.1rem;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="hero-section">
-        <h1 class="hero-title">🌍 Welcome to Exploro</h1>
-        <p class="hero-subtitle">
-          Discover amazing places and create unforgettable memories
-        </p>
-        <div class="d-flex justify-content-center cta-buttons">
-          <a href="/listings" class="btn btn-light btn-lg">Explore Listings</a>
-          <% if (!currUser) { %>
-          <a href="/signup" class="btn btn-outline-light btn-lg">Get Started</a>
-          <% } else { %>
-          <a href="/listings" class="btn btn-outline-light btn-lg">View All</a>
-          <% } %>
+<% layout("/layouts/boilerplate") %>
+
+<!-- Hero Section -->
+<section class="home-hero">
+  <div class="home-hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <i class="fa-solid fa-sparkles"></i> The World is Yours to Explore
+    </div>
+    <h1 class="hero-title">
+      Find Extraordinary Stays <br class="d-none d-md-inline" />
+      <span class="gradient-text">Around the Globe</span>
+    </h1>
+    <p class="hero-subtitle">
+      From cozy mountain cabins and tropical beach villas to luxury urban apartments, discover handpicked stays with verified hospitality.
+    </p>
+
+    <!-- Quick Search Pill Bar -->
+    <form class="hero-search-card" action="/listings" method="GET">
+      <div class="hero-search-field">
+        <i class="fa-solid fa-location-dot"></i>
+        <input
+          type="text"
+          name="q"
+          placeholder="Where to? (e.g. Goa, Paris, Jaipur, Bali...)"
+          required
+        />
+      </div>
+      <button type="submit" class="hero-submit-btn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span>Search Stays</span>
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- Inspiring Categories Grid -->
+<section class="mb-5">
+  <div class="section-header text-center text-md-start">
+    <span class="section-tag">Explore Collections</span>
+    <h2 class="section-title">Popular Categories</h2>
+    <p class="section-subtitle">Curated accommodations for every style of travel</p>
+  </div>
+
+  <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3">
+    <div class="col">
+      <a href="/listings" class="category-card">
+        <div class="category-icon-box">
+          <i class="fa-solid fa-mountain-city"></i>
         </div>
+        <h6 class="category-name">Iconic Cities</h6>
+        <span class="category-count">Urban escapes</span>
+      </a>
+    </div>
+
+    <div class="col">
+      <a href="/listings" class="category-card">
+        <div class="category-icon-box">
+          <i class="fa-solid fa-umbrella-beach"></i>
+        </div>
+        <h6 class="category-name">Beachfront</h6>
+        <span class="category-count">Ocean views</span>
+      </a>
+    </div>
+
+    <div class="col">
+      <a href="/listings" class="category-card">
+        <div class="category-icon-box">
+          <i class="fa-solid fa-mountain"></i>
+        </div>
+        <h6 class="category-name">Mountains</h6>
+        <span class="category-count">Cozy cabins</span>
+      </a>
+    </div>
+
+    <div class="col">
+      <a href="/listings" class="category-card">
+        <div class="category-icon-box">
+          <i class="fa-solid fa-person-swimming"></i>
+        </div>
+        <h6 class="category-name">Amazing Pools</h6>
+        <span class="category-count">Luxury stays</span>
+      </a>
+    </div>
+
+    <div class="col">
+      <a href="/listings" class="category-card">
+        <div class="category-icon-box">
+          <i class="fa-brands fa-fort-awesome"></i>
+        </div>
+        <h6 class="category-name">Castles</h6>
+        <span class="category-count">Historic gems</span>
+      </a>
+    </div>
+
+    <div class="col">
+      <a href="/listings" class="category-card">
+        <div class="category-icon-box">
+          <i class="fa-solid fa-campground"></i>
+        </div>
+        <h6 class="category-name">Camping</h6>
+        <span class="category-count">Nature retreats</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Wanderlust -->
+<section class="my-5 py-4">
+  <div class="section-header text-center">
+    <span class="section-tag">Why Wanderlust</span>
+    <h2 class="section-title">Designed for Seamless Stays</h2>
+    <p class="section-subtitle">Everything you need for a comfortable and memorable journey</p>
+  </div>
+
+  <div class="row g-4 mt-2">
+    <div class="col-md-6 col-lg-3">
+      <div class="feature-card">
+        <div class="feature-icon-bubble">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <h5 class="feature-title">Verified Homes</h5>
+        <p class="feature-desc">
+          Every stay meets our quality standards for cleanliness, safety, and authentic amenities.
+        </p>
       </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
+    <div class="col-md-6 col-lg-3">
+      <div class="feature-card">
+        <div class="feature-icon-bubble">
+          <i class="fa-solid fa-tags"></i>
+        </div>
+        <h5 class="feature-title">Clear Pricing</h5>
+        <p class="feature-desc">
+          Transparent rates with instant tax calculations. No hidden check-out surprises.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+      <div class="feature-card">
+        <div class="feature-icon-bubble">
+          <i class="fa-solid fa-headset"></i>
+        </div>
+        <h5 class="feature-title">24/7 Support</h5>
+        <p class="feature-desc">
+          Round-the-clock customer support to assist with bookings, travel changes, or inquiries.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+      <div class="feature-card">
+        <div class="feature-icon-bubble">
+          <i class="fa-solid fa-heart"></i>
+        </div>
+        <h5 class="feature-title">Host Community</h5>
+        <p class="feature-desc">
+          Passionate local hosts dedicated to sharing their insider knowledge and authentic hospitality.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Host Callout Banner -->
+<section class="host-cta-banner">
+  <div class="row align-items-center position-relative" style="z-index: 2;">
+    <div class="col-lg-8">
+      <h3 class="host-cta-title">Turn your extra space into extra income</h3>
+      <p class="host-cta-desc">
+        Join thousands of hosts welcoming travelers from around the world. List your apartment, villa, or boutique room in minutes.
+      </p>
+    </div>
+    <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+      <a href="/listings/new" class="host-cta-btn">
+        <i class="fa-solid fa-plus"></i> List Your Property
+      </a>
+    </div>
+  </div>
+</section>

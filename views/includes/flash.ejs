@@ -1,27 +1,37 @@
 <% if(success && success.length){ %>
-<div
-  class="alert alert-success alert-dismissible fade show col-6 offset-3"
-  role="alert"
->
-  <%= success %>
-  <button
-    type="button"
-    class="btn-close"
-    data-bs-dismiss="alert"
-    aria-label="close"
-  ></button>
+<div class="flash-container">
+  <div class="toast-custom toast-success shadow" role="alert">
+    <div class="toast-content">
+      <i class="fa-solid fa-circle-check toast-icon"></i>
+      <span><%= success %></span>
+    </div>
+    <button
+      type="button"
+      class="toast-close"
+      onclick="this.closest('.flash-container').remove()"
+      aria-label="Close"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
 </div>
-<% } %> <% if(error && error.length){ %>
-<div
-  class="alert alert-danger alert-dismissible fade show col-6 offset-3"
-  role="alert"
->
-  <%= error %>
-  <button
-    type="button"
-    class="btn-close"
-    data-bs-dismiss="alert"
-    aria-label="close"
-  ></button>
+<% } %>
+
+<% if(error && error.length){ %>
+<div class="flash-container">
+  <div class="toast-custom toast-danger shadow" role="alert">
+    <div class="toast-content">
+      <i class="fa-solid fa-circle-exclamation toast-icon"></i>
+      <span><%= error %></span>
+    </div>
+    <button
+      type="button"
+      class="toast-close"
+      onclick="this.closest('.flash-container').remove()"
+      aria-label="Close"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
 </div>
 <% } %>
