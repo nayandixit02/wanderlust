@@ -144,36 +144,55 @@
   const filterPills = document.querySelectorAll(".filter-pill");
   const listingCards = document.querySelectorAll(".listing-item-col");
 
+  function filterByCategory(category) {
+    if (!category || category === "all") {
+      listingCards.forEach((card) => (card.style.display = "block"));
+      checkEmptyState();
+      return;
+    }
+
+    const catLower = category.toLowerCase().trim();
+    listingCards.forEach((card) => {
+      const itemCategory = (card.getAttribute("data-category") || "").toLowerCase().trim();
+      const title = (card.getAttribute("data-title") || "").toLowerCase();
+      const desc = (card.getAttribute("data-description") || "").toLowerCase();
+      const location = (card.getAttribute("data-location") || "").toLowerCase();
+      const country = (card.getAttribute("data-country") || "").toLowerCase();
+
+      const match =
+        itemCategory === catLower ||
+        itemCategory.includes(catLower) ||
+        title.includes(catLower) ||
+        desc.includes(catLower) ||
+        location.includes(catLower) ||
+        country.includes(catLower);
+
+      card.style.display = match ? "block" : "none";
+    });
+
+    checkEmptyState();
+  }
+
   filterPills.forEach((pill) => {
     pill.addEventListener("click", function () {
       filterPills.forEach((p) => p.classList.remove("active"));
       this.classList.add("active");
-
       const category = this.getAttribute("data-category");
-      if (!category || category === "all") {
-        listingCards.forEach((card) => (card.style.display = "block"));
-        checkEmptyState();
-        return;
-      }
-
-      listingCards.forEach((card) => {
-        const title = card.getAttribute("data-title")?.toLowerCase() || "";
-        const desc = card.getAttribute("data-description")?.toLowerCase() || "";
-        const location = card.getAttribute("data-location")?.toLowerCase() || "";
-        const country = card.getAttribute("data-country")?.toLowerCase() || "";
-
-        const match =
-          title.includes(category.toLowerCase()) ||
-          desc.includes(category.toLowerCase()) ||
-          location.includes(category.toLowerCase()) ||
-          country.includes(category.toLowerCase());
-
-        card.style.display = match ? "block" : "none";
-      });
-
-      checkEmptyState();
+      filterByCategory(category);
     });
   });
+
+  // Auto-activate category from URL parameter (e.g. ?category=beach)
+  const urlParams = new URLSearchParams(window.location.search);
+  const paramCategory = urlParams.get("category");
+  if (paramCategory) {
+    const matchingPill = document.querySelector(`.filter-pill[data-category="${paramCategory}"]`);
+    if (matchingPill) {
+      filterPills.forEach((p) => p.classList.remove("active"));
+      matchingPill.classList.add("active");
+      filterByCategory(paramCategory);
+    }
+  }
 
   function checkEmptyState() {
     const emptyState = document.getElementById("emptyListingState");
@@ -192,11 +211,12 @@
       if (!listingCards.length) return;
 
       listingCards.forEach((card) => {
-        const title = card.getAttribute("data-title")?.toLowerCase() || "";
-        const location = card.getAttribute("data-location")?.toLowerCase() || "";
-        const country = card.getAttribute("data-country")?.toLowerCase() || "";
+        const title = (card.getAttribute("data-title") || "").toLowerCase();
+        const location = (card.getAttribute("data-location") || "").toLowerCase();
+        const country = (card.getAttribute("data-country") || "").toLowerCase();
+        const category = (card.getAttribute("data-category") || "").toLowerCase();
 
-        if (title.includes(q) || location.includes(q) || country.includes(q)) {
+        if (title.includes(q) || location.includes(q) || country.includes(q) || category.includes(q)) {
           card.style.display = "block";
         } else {
           card.style.display = "none";

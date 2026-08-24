@@ -7,49 +7,49 @@
       <i class="fa-solid fa-fire"></i>
       <span>Trending</span>
     </button>
-    <button class="filter-pill" data-category="room">
-      <i class="fa-solid fa-bed"></i>
-      <span>Rooms</span>
+    <button class="filter-pill" data-category="beach">
+      <i class="fa-solid fa-umbrella-beach"></i>
+      <span>Coastal & Beach</span>
+    </button>
+    <button class="filter-pill" data-category="mountain">
+      <i class="fa-solid fa-mountain"></i>
+      <span>Alpine & Mountains</span>
     </button>
     <button class="filter-pill" data-category="city">
       <i class="fa-solid fa-mountain-city"></i>
       <span>Iconic Cities</span>
     </button>
-    <button class="filter-pill" data-category="mountain">
-      <i class="fa-solid fa-mountain"></i>
-      <span>Alpine</span>
-    </button>
-    <button class="filter-pill" data-category="beach">
-      <i class="fa-solid fa-umbrella-beach"></i>
-      <span>Coastal</span>
-    </button>
-    <button class="filter-pill" data-category="castle">
-      <i class="fa-brands fa-fort-awesome"></i>
-      <span>Castles</span>
-    </button>
     <button class="filter-pill" data-category="pool">
       <i class="fa-solid fa-person-swimming"></i>
       <span>Amazing Pools</span>
     </button>
+    <button class="filter-pill" data-category="castle">
+      <i class="fa-brands fa-fort-awesome"></i>
+      <span>Castles & Estates</span>
+    </button>
     <button class="filter-pill" data-category="camp">
       <i class="fa-solid fa-campground"></i>
-      <span>Glamping</span>
-    </button>
-    <button class="filter-pill" data-category="farm">
-      <i class="fa-solid fa-cow"></i>
-      <span>Farms</span>
+      <span>Glamping & Nature</span>
     </button>
     <button class="filter-pill" data-category="arctic">
       <i class="fa-regular fa-snowflake"></i>
-      <span>Arctic</span>
+      <span>Arctic & Aurora</span>
     </button>
     <button class="filter-pill" data-category="dome">
       <i class="fa-solid fa-igloo"></i>
-      <span>Domes</span>
+      <span>Geodesic Domes</span>
     </button>
     <button class="filter-pill" data-category="boat">
       <i class="fa-solid fa-ship"></i>
-      <span>Boats</span>
+      <span>Houseboats</span>
+    </button>
+    <button class="filter-pill" data-category="farm">
+      <i class="fa-solid fa-cow"></i>
+      <span>Farms & Country</span>
+    </button>
+    <button class="filter-pill" data-category="room">
+      <i class="fa-solid fa-bed"></i>
+      <span>Boutique Rooms</span>
     </button>
   </div>
 
@@ -69,6 +69,17 @@
   </div>
 </div>
 
+<% if (typeof searchLocation !== 'undefined' && searchLocation) { %>
+  <div class="d-flex align-items-center justify-content-between mb-4 pb-2 border-bottom">
+    <h5 class="fw-bold mb-0">
+      <i class="fa-solid fa-location-dot text-primary me-2"></i>Results for "<%= searchLocation %>"
+    </h5>
+    <a href="/listings" class="btn btn-sm btn-outline-secondary rounded-pill px-3">
+      Clear Filter
+    </a>
+  </div>
+<% } %>
+
 <!-- Listings Cards Grid -->
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4 g-4" id="listingsGrid">
   <% for(listing of allListings){ %>
@@ -78,6 +89,7 @@
     data-description="<%= listing.description %>"
     data-location="<%= listing.location %>"
     data-country="<%= listing.country %>"
+    data-category="<%= listing.category || 'trending' %>"
   >
     <a href="/listings/<%= listing._id %>" class="listing-card-link">
       <div class="listing-card">
@@ -126,13 +138,13 @@
 </div>
 
 <!-- Empty Search / Filter State -->
-<div id="emptyListingState" class="empty-listings-state" style="display: none;">
+<div id="emptyListingState" class="empty-listings-state" style="<%= allListings.length === 0 ? 'display: block;' : 'display: none;' %>">
   <div class="empty-state-icon">
     <i class="fa-solid fa-magnifying-glass"></i>
   </div>
   <h4 class="fw-bold mb-2">No matching sanctuaries found</h4>
   <p class="text-muted mb-3">Try adjusting your search terms or exploring all categories.</p>
-  <button class="btn btn-outline-primary rounded-pill px-4" onclick="document.querySelector('[data-category=all]').click();">
+  <a href="/listings" class="btn btn-outline-primary rounded-pill px-4">
     View All Sanctuaries
-  </button>
+  </a>
 </div>
