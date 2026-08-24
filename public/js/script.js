@@ -1,7 +1,45 @@
 (() => {
   "use strict";
 
-  // Bootstrap Form Validation
+  // ==========================================
+  // 1. THEME SWITCHER (LIGHT / DARK MODE)
+  // ==========================================
+  const themeToggleBtn = document.getElementById("themeToggleBtn");
+  const themeIcon = document.getElementById("themeIcon");
+
+  function getStoredTheme() {
+    return localStorage.getItem("wanderlust-theme") || "light";
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("wanderlust-theme", theme);
+    if (themeIcon) {
+      if (theme === "dark") {
+        themeIcon.className = "fa-solid fa-sun text-warning";
+        if (themeToggleBtn) themeToggleBtn.setAttribute("title", "Switch to Light Mode");
+      } else {
+        themeIcon.className = "fa-solid fa-moon text-primary";
+        if (themeToggleBtn) themeToggleBtn.setAttribute("title", "Switch to Dark Mode");
+      }
+    }
+  }
+
+  // Initialize theme on script load
+  const initialTheme = getStoredTheme();
+  applyTheme(initialTheme);
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+      const nextTheme = currentTheme === "dark" ? "light" : "dark";
+      applyTheme(nextTheme);
+    });
+  }
+
+  // ==========================================
+  // 2. BOOTSTRAP FORM VALIDATION
+  // ==========================================
   const forms = document.querySelectorAll(".needs-validation");
   Array.from(forms).forEach((form) => {
     form.addEventListener(
@@ -17,7 +55,9 @@
     );
   });
 
-  // Auto-dismiss Flash Alerts
+  // ==========================================
+  // 3. FLASH TOAST AUTO-DISMISS
+  // ==========================================
   const flashAlerts = document.querySelectorAll(".toast-custom");
   flashAlerts.forEach((alert) => {
     setTimeout(() => {
@@ -32,7 +72,9 @@
     }, 4500);
   });
 
-  // Tax Switch Toggle Handler
+  // ==========================================
+  // 4. TAX SWITCH TOGGLE HANDLER
+  // ==========================================
   const taxSwitch = document.getElementById("taxSwitchCheck");
   if (taxSwitch) {
     taxSwitch.addEventListener("change", () => {
@@ -43,7 +85,9 @@
     });
   }
 
-  // Wishlist Heart Button Favorite Toggle
+  // ==========================================
+  // 5. WISHLIST FAVORITE TOGGLE
+  // ==========================================
   const wishlistButtons = document.querySelectorAll(".card-heart-btn");
   wishlistButtons.forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -55,7 +99,7 @@
         if (btn.classList.contains("favorited")) {
           icon.classList.remove("fa-regular");
           icon.classList.add("fa-solid");
-          icon.style.color = "#ff385c";
+          icon.style.color = "#ef4444";
         } else {
           icon.classList.remove("fa-solid");
           icon.classList.add("fa-regular");
@@ -65,7 +109,9 @@
     });
   });
 
-  // File Upload Preview
+  // ==========================================
+  // 6. FILE UPLOAD IMAGE PREVIEW
+  // ==========================================
   const fileInputs = document.querySelectorAll(".file-input-hidden");
   fileInputs.forEach((input) => {
     input.addEventListener("change", function () {
@@ -84,7 +130,9 @@
     });
   });
 
-  // Category Filter Pill Click (Client-side interactive filter)
+  // ==========================================
+  // 7. CATEGORY & LIVE SEARCH FILTERING
+  // ==========================================
   const filterPills = document.querySelectorAll(".filter-pill");
   const listingCards = document.querySelectorAll(".listing-item-col");
 
@@ -100,7 +148,6 @@
         return;
       }
 
-      let visibleCount = 0;
       listingCards.forEach((card) => {
         const title = card.getAttribute("data-title")?.toLowerCase() || "";
         const desc = card.getAttribute("data-description")?.toLowerCase() || "";
@@ -113,12 +160,7 @@
           location.includes(category.toLowerCase()) ||
           country.includes(category.toLowerCase());
 
-        if (match) {
-          card.style.display = "block";
-          visibleCount++;
-        } else {
-          card.style.display = "none";
-        }
+        card.style.display = match ? "block" : "none";
       });
 
       checkEmptyState();

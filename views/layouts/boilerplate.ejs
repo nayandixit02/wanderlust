@@ -3,7 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wanderlust - Find Your Next Extraordinary Stay</title>
+    <title>Wanderlust - Find Extraordinary Stays & Sanctuaries</title>
+
+    <!-- Immediate Theme Initialization (Prevents FOUC) -->
+    <script>
+      (function() {
+        const savedTheme = localStorage.getItem("wanderlust-theme") || "light";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      })();
+    </script>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -13,7 +21,7 @@
       rel="stylesheet"
     />
 
-    <!-- Font Awesome -->
+    <!-- Font Awesome 6 -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -30,7 +38,7 @@
       crossorigin="anonymous"
     />
 
-    <!-- Rating & Custom Theme CSS -->
+    <!-- Rating & Bespoke Theme CSS -->
     <link rel="stylesheet" href="/css/rating.css" />
     <link rel="stylesheet" href="/css/style.css" />
   </head>
@@ -54,7 +62,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- Custom App Script -->
+    <!-- Custom Script -->
     <script src="/js/script.js"></script>
   </body>
 </html>

@@ -3,23 +3,35 @@
     <!-- Brand Logo -->
     <a class="navbar-brand" href="/listings">
       <div class="brand-icon-wrapper">
-        <i class="fa-regular fa-compass"></i>
+        <i class="fa-solid fa-compass"></i>
       </div>
       <span>Wanderlust</span>
     </a>
 
     <!-- Mobile Toggler -->
-    <button
-      class="navbar-toggler border-0 shadow-none p-2"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarMainContent"
-      aria-controls="navbarMainContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <i class="fa-solid fa-bars-staggered fs-4 text-dark"></i>
-    </button>
+    <div class="d-flex align-items-center gap-2 d-lg-none">
+      <!-- Theme Switcher (Mobile) -->
+      <button
+        class="theme-toggle-btn"
+        id="themeToggleBtnMobile"
+        onclick="document.getElementById('themeToggleBtn').click();"
+        aria-label="Toggle Theme"
+      >
+        <i class="fa-solid fa-moon text-primary"></i>
+      </button>
+
+      <button
+        class="navbar-toggler border-0 shadow-none p-2"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarMainContent"
+        aria-controls="navbarMainContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fa-solid fa-bars-staggered fs-4"></i>
+      </button>
+    </div>
 
     <!-- Collapsible Content -->
     <div class="collapse navbar-collapse" id="navbarMainContent">
@@ -30,7 +42,7 @@
             class="nav-search-input quick-search-input"
             type="search"
             name="q"
-            placeholder="Search destinations, villas..."
+            placeholder="Search sanctuaries, villas, cities..."
             aria-label="Search"
           />
           <button class="nav-search-btn" type="submit" aria-label="Search">
@@ -42,8 +54,19 @@
       <!-- Right Navigation Actions -->
       <div class="navbar-nav ms-auto align-items-lg-center gap-2">
         <a class="nav-link nav-host-btn" href="/listings/new">
-          <i class="fa-solid fa-house-chimney me-1 text-danger"></i> Airbnb your home
+          <i class="fa-solid fa-gem me-1 text-primary"></i> Wanderlust your home
         </a>
+
+        <!-- Theme Toggle Button (Desktop) -->
+        <button
+          class="theme-toggle-btn d-none d-lg-flex"
+          id="themeToggleBtn"
+          type="button"
+          aria-label="Toggle Theme"
+          title="Toggle Light/Dark Theme"
+        >
+          <i id="themeIcon" class="fa-solid fa-moon text-primary"></i>
+        </button>
 
         <% if (!currUser) { %>
           <a class="btn nav-auth-btn nav-btn-login" href="/login">Log in</a>

@@ -1,116 +1,135 @@
 <% layout("/layouts/boilerplate") %>
 
-<!-- Hero Section -->
-<section class="home-hero">
-  <div class="home-hero-bg"></div>
-  <div class="hero-content">
-    <div class="hero-badge">
-      <i class="fa-solid fa-sparkles"></i> The World is Yours to Explore
-    </div>
-    <h1 class="hero-title">
-      Find Extraordinary Stays <br class="d-none d-md-inline" />
-      <span class="gradient-text">Around the Globe</span>
+<!-- Cinematic Hero Section (Matching Reference Style) -->
+<section class="hero-cinematic">
+  <div class="hero-cinematic-overlay"></div>
+  <div class="hero-cinematic-content">
+    <h1 class="hero-cinematic-title">
+      Unearth Extraordinary Escapes
     </h1>
-    <p class="hero-subtitle">
-      From cozy mountain cabins and tropical beach villas to luxury urban apartments, discover handpicked stays with verified hospitality.
+    <p class="hero-cinematic-subtitle">
+      Handpicked sanctuaries and immersive journeys crafted for the mindful explorer.
     </p>
 
-    <!-- Quick Search Pill Bar -->
-    <form class="hero-search-card" action="/listings" method="GET">
-      <div class="hero-search-field">
+    <!-- 4-Part Glassmorphic Floating Search Box -->
+    <form class="hero-glass-searchbar" action="/listings" method="GET">
+      <!-- 1. Where to? -->
+      <div class="search-field-pill">
         <i class="fa-solid fa-location-dot"></i>
         <input
           type="text"
           name="q"
-          placeholder="Where to? (e.g. Goa, Paris, Jaipur, Bali...)"
+          placeholder="Where to? (e.g. Goa, Alps, Bali)"
           required
         />
       </div>
-      <button type="submit" class="hero-submit-btn">
+
+      <!-- 2. Check in - Check out -->
+      <div class="search-field-pill">
+        <i class="fa-regular fa-calendar"></i>
+        <input
+          type="text"
+          placeholder="Check in - Check out"
+          onfocus="(this.type='date')"
+          onblur="(this.type='text')"
+        />
+      </div>
+
+      <!-- 3. Guests -->
+      <div class="search-field-pill">
+        <i class="fa-solid fa-user-group"></i>
+        <input
+          type="text"
+          placeholder="Guests (e.g. 2 Guests)"
+        />
+      </div>
+
+      <!-- 4. Search Button -->
+      <button type="submit" class="search-btn-gradient">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <span>Search Stays</span>
+        <span>Search</span>
       </button>
     </form>
   </div>
 </section>
 
-<!-- Inspiring Categories Grid -->
+<!-- Inspiring Collections / Categories -->
 <section class="mb-5">
   <div class="section-header text-center text-md-start">
-    <span class="section-tag">Explore Collections</span>
-    <h2 class="section-title">Popular Categories</h2>
-    <p class="section-subtitle">Curated accommodations for every style of travel</p>
+    <span class="section-tag">Curated Collections</span>
+    <h2 class="section-title">Explore by Style of Stay</h2>
+    <p class="section-subtitle">Discover handcrafted spaces designed for every kind of travel experience</p>
   </div>
 
   <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3">
     <div class="col">
-      <a href="/listings" class="category-card">
+      <a href="/listings?category=city" class="category-card">
         <div class="category-icon-box">
           <i class="fa-solid fa-mountain-city"></i>
         </div>
         <h6 class="category-name">Iconic Cities</h6>
-        <span class="category-count">Urban escapes</span>
+        <span class="category-count">Urban sanctuaries</span>
       </a>
     </div>
 
     <div class="col">
-      <a href="/listings" class="category-card">
+      <a href="/listings?category=beach" class="category-card">
         <div class="category-icon-box">
           <i class="fa-solid fa-umbrella-beach"></i>
         </div>
-        <h6 class="category-name">Beachfront</h6>
+        <h6 class="category-name">Coastal Villas</h6>
         <span class="category-count">Ocean views</span>
       </a>
     </div>
 
     <div class="col">
-      <a href="/listings" class="category-card">
+      <a href="/listings?category=mountain" class="category-card">
         <div class="category-icon-box">
           <i class="fa-solid fa-mountain"></i>
         </div>
-        <h6 class="category-name">Mountains</h6>
-        <span class="category-count">Cozy cabins</span>
+        <h6 class="category-name">Alpine Cabins</h6>
+        <span class="category-count">High-altitude escapes</span>
       </a>
     </div>
 
     <div class="col">
-      <a href="/listings" class="category-card">
+      <a href="/listings?category=pool" class="category-card">
         <div class="category-icon-box">
           <i class="fa-solid fa-person-swimming"></i>
         </div>
         <h6 class="category-name">Amazing Pools</h6>
-        <span class="category-count">Luxury stays</span>
+        <span class="category-count">Private luxury</span>
       </a>
     </div>
 
     <div class="col">
-      <a href="/listings" class="category-card">
+      <a href="/listings?category=castle" class="category-card">
         <div class="category-icon-box">
           <i class="fa-brands fa-fort-awesome"></i>
         </div>
-        <h6 class="category-name">Castles</h6>
-        <span class="category-count">Historic gems</span>
+        <h6 class="category-name">Historic Estates</h6>
+        <span class="category-count">Timeless grandeur</span>
       </a>
     </div>
 
     <div class="col">
-      <a href="/listings" class="category-card">
+      <a href="/listings?category=camp" class="category-card">
         <div class="category-icon-box">
           <i class="fa-solid fa-campground"></i>
         </div>
-        <h6 class="category-name">Camping</h6>
+        <h6 class="category-name">Glamping Stays</h6>
         <span class="category-count">Nature retreats</span>
       </a>
     </div>
   </div>
 </section>
 
-<!-- Why Choose Wanderlust -->
+<!-- The Wanderlust Difference -->
 <section class="my-5 py-4">
   <div class="section-header text-center">
-    <span class="section-tag">Why Wanderlust</span>
-    <h2 class="section-title">Designed for Seamless Stays</h2>
-    <p class="section-subtitle">Everything you need for a comfortable and memorable journey</p>
+    <span class="section-tag">The Wanderlust Standard</span>
+    <h2 class="section-title">Designed for Unrivaled Peace of Mind</h2>
+    <p class="section-subtitle">Every stay is backed by our authentic quality commitment and guest care</p>
   </div>
 
   <div class="row g-4 mt-2">
@@ -119,9 +138,9 @@
         <div class="feature-icon-bubble">
           <i class="fa-solid fa-shield-halved"></i>
         </div>
-        <h5 class="feature-title">Verified Homes</h5>
+        <h5 class="feature-title">Verified Sanctuaries</h5>
         <p class="feature-desc">
-          Every stay meets our quality standards for cleanliness, safety, and authentic amenities.
+          Rigorous quality inspections guarantee cleanliness, comfort, high-speed Wi-Fi, and authentic amenities.
         </p>
       </div>
     </div>
@@ -129,11 +148,11 @@
     <div class="col-md-6 col-lg-3">
       <div class="feature-card">
         <div class="feature-icon-bubble">
-          <i class="fa-solid fa-tags"></i>
+          <i class="fa-solid fa-receipt"></i>
         </div>
-        <h5 class="feature-title">Clear Pricing</h5>
+        <h5 class="feature-title">Transparent Pricing</h5>
         <p class="feature-desc">
-          Transparent rates with instant tax calculations. No hidden check-out surprises.
+          Direct rates with upfront tax calculation. No hidden service markups or check-out surprises.
         </p>
       </div>
     </div>
@@ -143,9 +162,9 @@
         <div class="feature-icon-bubble">
           <i class="fa-solid fa-headset"></i>
         </div>
-        <h5 class="feature-title">24/7 Support</h5>
+        <h5 class="feature-title">24/7 Guest Care</h5>
         <p class="feature-desc">
-          Round-the-clock customer support to assist with bookings, travel changes, or inquiries.
+          Dedicated concierge assistance around the clock for reservations, itinerary changes, and on-ground support.
         </p>
       </div>
     </div>
@@ -153,29 +172,30 @@
     <div class="col-md-6 col-lg-3">
       <div class="feature-card">
         <div class="feature-icon-bubble">
-          <i class="fa-solid fa-heart"></i>
+          <i class="fa-solid fa-medal"></i>
         </div>
-        <h5 class="feature-title">Host Community</h5>
+        <h5 class="feature-title">Superhost Network</h5>
         <p class="feature-desc">
-          Passionate local hosts dedicated to sharing their insider knowledge and authentic hospitality.
+          Accommodations hosted by verified local hosts recognized for outstanding hospitality and local wisdom.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Host Callout Banner -->
+<!-- Wanderlust Your Home - Host CTA Banner -->
 <section class="host-cta-banner">
   <div class="row align-items-center position-relative" style="z-index: 2;">
     <div class="col-lg-8">
-      <h3 class="host-cta-title">Turn your extra space into extra income</h3>
+      <span class="badge bg-primary px-3 py-2 rounded-pill fw-bold text-white mb-3">Host Community</span>
+      <h3 class="host-cta-title">Wanderlust your home and earn seamlessly</h3>
       <p class="host-cta-desc">
-        Join thousands of hosts welcoming travelers from around the world. List your apartment, villa, or boutique room in minutes.
+        Share your unique villa, loft, or sanctuary with travelers from around the world. Enjoy full insurance coverage, flexible calendar controls, and top earnings.
       </p>
     </div>
     <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
       <a href="/listings/new" class="host-cta-btn">
-        <i class="fa-solid fa-plus"></i> List Your Property
+        <i class="fa-solid fa-plus"></i> List Your Sanctuary
       </a>
     </div>
   </div>

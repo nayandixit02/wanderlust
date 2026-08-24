@@ -4,11 +4,11 @@
   <div class="form-card">
     <div class="form-header">
       <div class="brand-icon-wrapper mx-auto mb-3">
-        <i class="fa-solid fa-house-chimney-medical"></i>
+        <i class="fa-solid fa-gem"></i>
       </div>
-      <h2 class="form-header-title">Host Your Space</h2>
+      <h2 class="form-header-title">Wanderlust Your Home</h2>
       <p class="form-header-subtitle">
-        Fill in the details below to publish your property on Wanderlust and start welcoming guests.
+        Publish your sanctuary on Wanderlust and begin welcoming world travelers.
       </p>
     </div>
 
@@ -21,12 +21,12 @@
     >
       <!-- Title -->
       <div class="form-group-custom">
-        <label for="title" class="form-label-custom">Listing Title</label>
+        <label for="title" class="form-label-custom">Sanctuary Title</label>
         <input
           type="text"
           id="title"
           name="listing[title]"
-          placeholder="e.g. Luxury Seaview Villa in North Goa"
+          placeholder="e.g. Alpine Pine Chalet with Panoramic Views"
           class="form-control-custom"
           required
         />
@@ -41,16 +41,16 @@
           id="description"
           name="listing[description]"
           rows="4"
-          placeholder="Describe the atmosphere, unique views, amenities, and nearby attractions..."
+          placeholder="Describe the architectural style, views, amenities, and nearby nature trails..."
           class="form-control-custom"
           required
         ></textarea>
-        <div class="invalid-feedback">Please provide a short description for your listing.</div>
+        <div class="invalid-feedback">Please provide a short description for your sanctuary.</div>
       </div>
 
       <!-- Image Upload Dropzone -->
       <div class="form-group-custom">
-        <label class="form-label-custom">Property Cover Photo</label>
+        <label class="form-label-custom">Cover Photo</label>
         <div class="file-upload-zone">
           <input
             type="file"
@@ -63,32 +63,30 @@
           <div class="file-upload-icon">
             <i class="fa-solid fa-cloud-arrow-up"></i>
           </div>
-          <div class="file-upload-text" id="fileUploadText">Click or drag image to upload</div>
-          <div class="file-upload-hint">Supports high-res JPG, PNG, WEBP</div>
+          <div class="file-upload-text" id="fileUploadText">Click or drag photo to upload</div>
+          <div class="file-upload-hint">High resolution JPG, PNG, WEBP supported</div>
         </div>
         <div id="imagePreviewBox" class="image-preview-box">
           <img id="imagePreviewImg" src="" alt="Selected Preview" />
         </div>
-        <div class="invalid-feedback">Please choose an image for your listing.</div>
+        <div class="invalid-feedback">Please choose an image for your sanctuary.</div>
       </div>
 
       <!-- Price & Country Row -->
       <div class="row g-3">
         <div class="col-md-5">
           <div class="form-group-custom">
-            <label for="price" class="form-label-custom">Price (&#8377; / night)</label>
-            <div class="input-group">
-              <input
-                type="number"
-                id="price"
-                name="listing[price]"
-                placeholder="2500"
-                class="form-control-custom"
-                min="1"
-                required
-              />
-            </div>
-            <div class="invalid-feedback">Please enter a valid nightly price.</div>
+            <label for="price" class="form-label-custom">Nightly Rate (&#8377;)</label>
+            <input
+              type="number"
+              id="price"
+              name="listing[price]"
+              placeholder="3500"
+              class="form-control-custom"
+              min="1"
+              required
+            />
+            <div class="invalid-feedback">Please enter a valid price.</div>
           </div>
         </div>
 
@@ -99,7 +97,7 @@
               type="text"
               id="country"
               name="listing[country]"
-              placeholder="e.g. India"
+              placeholder="e.g. Switzerland"
               class="form-control-custom"
               required
             />
@@ -115,20 +113,20 @@
           type="text"
           id="location"
           name="listing[location]"
-          placeholder="e.g. Calangute, Goa"
+          placeholder="e.g. Zermatt, Valais"
           class="form-control-custom"
           required
         />
-        <div class="invalid-feedback">Please enter a valid location or city.</div>
+        <div class="invalid-feedback">Please enter a location or region.</div>
       </div>
 
       <!-- Submit Button -->
       <button class="btn btn-primary-gradient mt-3 py-3" type="submit">
-        <i class="fa-solid fa-circle-check me-1"></i> Publish Listing
+        <i class="fa-solid fa-circle-check me-1"></i> Publish Sanctuary
       </button>
 
       <div class="form-footer-note">
-        Need to make changes later? You can update your listing at any time.
+        You retain full control over your pricing, calendar, and house rules.
       </div>
     </form>
   </div>

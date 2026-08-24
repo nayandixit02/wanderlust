@@ -1,9 +1,9 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="container show-header">
+<div class="show-header">
   <!-- Breadcrumb -->
   <div class="show-breadcrumbs">
-    <a href="/listings"><i class="fa-solid fa-house me-1"></i> Listings</a>
+    <a href="/listings"><i class="fa-solid fa-house me-1"></i> Sanctuaries</a>
     <i class="fa-solid fa-chevron-right fs-xs"></i>
     <span class="text-truncate" style="max-width: 300px;"><%= listing.title %></span>
   </div>
@@ -13,14 +13,14 @@
     <div>
       <h1 class="show-listing-title"><%= listing.title %></h1>
       <div class="d-flex align-items-center gap-3 mt-2 text-muted">
-        <span><i class="fa-solid fa-star text-warning"></i> <b><%= listing.reviews && listing.reviews.length ? "4.95" : "New" %></b> · <a href="#reviewsSection" class="text-decoration-underline text-dark"><%= listing.reviews ? listing.reviews.length : 0 %> reviews</a></span>
+        <span><i class="fa-solid fa-star text-warning"></i> <b><%= listing.reviews && listing.reviews.length ? "4.95" : "New" %></b> · <a href="#reviewsSection" class="text-decoration-underline"><%= listing.reviews ? listing.reviews.length : 0 %> reviews</a></span>
         <span>·</span>
-        <span><i class="fa-solid fa-location-dot text-danger"></i> <%= listing.location %>, <%= listing.country %></span>
+        <span><i class="fa-solid fa-location-dot text-primary"></i> <%= listing.location %>, <%= listing.country %></span>
       </div>
     </div>
 
     <div class="show-header-actions">
-      <button class="btn-icon-action" onclick="navigator.clipboard.writeText(window.location.href); alert('Listing link copied to clipboard!');">
+      <button class="btn-icon-action" onclick="navigator.clipboard.writeText(window.location.href); alert('Sanctuary link copied to clipboard!');">
         <i class="fa-solid fa-share-nodes"></i> Share
       </button>
       <button class="btn-icon-action card-heart-btn-show" onclick="this.classList.toggle('text-danger');">
@@ -30,7 +30,7 @@
   </div>
 </div>
 
-<!-- Hero Image Gallery -->
+<!-- Hero Image Showcase -->
 <div class="show-hero-media">
   <img
     src="<%= listing.image.url %>"
@@ -53,7 +53,7 @@
           <p class="host-subtext">Verified Host · Fast Responder · 100% Identity Verified</p>
         </div>
       </div>
-      <span class="badge bg-danger-subtle text-danger px-3 py-2 rounded-pill fw-bold">
+      <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill fw-bold">
         <i class="fa-solid fa-medal me-1"></i> Superhost
       </span>
     </div>
@@ -70,48 +70,48 @@
       <div class="amenities-grid">
         <div class="amenity-item">
           <i class="fa-solid fa-wifi"></i>
-          <span>Fast High-speed Wi-Fi (100+ Mbps)</span>
+          <span>High-speed Fiber Wi-Fi (150+ Mbps)</span>
         </div>
         <div class="amenity-item">
           <i class="fa-solid fa-square-parking"></i>
-          <span>Free parking on premises</span>
+          <span>Complimentary parking on premises</span>
         </div>
         <div class="amenity-item">
           <i class="fa-solid fa-temperature-arrow-down"></i>
-          <span>Air conditioning & heating</span>
+          <span>Climate control (AC & Heating)</span>
         </div>
         <div class="amenity-item">
           <i class="fa-solid fa-kitchen-set"></i>
-          <span>Fully equipped modern kitchen</span>
+          <span>Fully equipped chef's kitchen</span>
         </div>
         <div class="amenity-item">
           <i class="fa-solid fa-water-ladder"></i>
-          <span>Swimming pool & patio</span>
+          <span>Private pool & outdoor patio</span>
         </div>
         <div class="amenity-item">
           <i class="fa-solid fa-tv"></i>
-          <span>HDTV with Netflix & Prime</span>
+          <span>4K Smart TV with premium streaming</span>
         </div>
         <div class="amenity-item">
           <i class="fa-solid fa-briefcase"></i>
-          <span>Dedicated ergonomic workspace</span>
+          <span>Dedicated ergonomic workstation</span>
         </div>
         <div class="amenity-item">
           <i class="fa-solid fa-shield-virus"></i>
-          <span>Smoke alarm & first-aid kit</span>
+          <span>Smoke detector & first aid kit</span>
         </div>
       </div>
     </div>
 
     <!-- Owner Controls (Edit/Delete) -->
     <% if(currUser && listing.owner && currUser._id.equals(listing.owner._id)) { %>
-    <div class="owner-actions-row">
-      <a href="/listings/<%= listing._id %>/edit" class="btn btn-owner-edit">
-        <i class="fa-solid fa-pen-to-square me-1"></i> Edit Listing
+    <div class="d-flex align-items-center gap-3 my-4">
+      <a href="/listings/<%= listing._id %>/edit" class="btn btn-outline-primary px-4 py-2 rounded-3 fw-semibold">
+        <i class="fa-solid fa-pen-to-square me-1"></i> Edit Sanctuary
       </a>
       <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE" class="d-inline" onsubmit="return confirm('Are you sure you want to permanently delete this listing?');">
-        <button class="btn btn-owner-delete" type="submit">
-          <i class="fa-solid fa-trash-can me-1"></i> Delete Listing
+        <button class="btn btn-outline-danger px-4 py-2 rounded-3 fw-semibold" type="submit">
+          <i class="fa-solid fa-trash-can me-1"></i> Delete Sanctuary
         </button>
       </form>
     </div>
@@ -125,14 +125,14 @@
             <i class="fa-solid fa-star text-warning"></i> 
             <%= listing.reviews && listing.reviews.length ? "4.95" : "No reviews yet" %>
           </h3>
-          <p class="text-muted mb-0"><%= listing.reviews ? listing.reviews.length : 0 %> verified guest reviews</p>
+          <p class="text-muted mb-0"><%= listing.reviews ? listing.reviews.length : 0 %> verified guest experiences</p>
         </div>
       </div>
 
       <!-- Add Review Form (Only Logged In Users) -->
       <% if(currUser) { %>
       <div class="review-form-card">
-        <h5 class="fw-bold mb-3"><i class="fa-solid fa-comment-dots text-danger me-2"></i>Leave a Review</h5>
+        <h5 class="fw-bold mb-3"><i class="fa-solid fa-comment-dots text-primary me-2"></i>Leave a Review</h5>
         <form
           action="/listings/<%= listing._id %>/reviews"
           method="POST"
@@ -172,10 +172,10 @@
               cols="30"
               rows="4"
               class="form-control form-control-custom"
-              placeholder="Tell other travelers about your stay, hospitality, and local surroundings..."
+              placeholder="Share details about your stay, hospitality, views, and local atmosphere..."
               required
             ></textarea>
-            <div class="invalid-feedback">Please write a comment for your review.</div>
+            <div class="invalid-feedback">Please write a review comment.</div>
           </div>
 
           <button class="btn btn-primary-gradient px-4 py-2" style="width: auto;" type="submit">
@@ -196,8 +196,8 @@
                   <%= review.author && review.author.username ? review.author.username.charAt(0).toUpperCase() : 'U' %>
                 </div>
                 <div>
-                  <div class="review-author-name">@<%= review.author ? review.author.username : 'Traveler' %></div>
-                  <div class="review-date-badge">Verified Guest</div>
+                  <div class="review-author-name">@<%= review.author ? review.author.username : 'Explorer' %></div>
+                  <div class="text-muted small">Verified Guest</div>
                 </div>
               </div>
 
@@ -225,9 +225,9 @@
           <% } %>
         <% } else { %>
           <div class="col-12">
-            <div class="text-center py-4 bg-white rounded-4 border">
+            <div class="text-center py-4 bg-surface rounded-4 border">
               <i class="fa-regular fa-comment text-muted fs-3 mb-2"></i>
-              <p class="text-muted mb-0">No reviews yet for this listing. Be the first to leave one!</p>
+              <p class="text-muted mb-0">No guest reviews yet. Be the first explorer to experience this sanctuary!</p>
             </div>
           </div>
         <% } %>
@@ -249,22 +249,22 @@
         </div>
       </div>
 
-      <!-- Dummy Booking Details Pill -->
-      <div class="border rounded-3 p-3 bg-light mb-3">
+      <!-- Booking Dates Pill -->
+      <div class="border rounded-3 p-3 mb-3" style="background: var(--bg-surface-subtle);">
         <div class="row g-2 text-center text-muted small">
           <div class="col-6 border-end">
-            <div class="fw-bold text-dark">CHECK-IN</div>
+            <div class="fw-bold" style="color: var(--text-main);">CHECK-IN</div>
             <div>Select date</div>
           </div>
           <div class="col-6">
-            <div class="fw-bold text-dark">CHECKOUT</div>
+            <div class="fw-bold" style="color: var(--text-main);">CHECKOUT</div>
             <div>Select date</div>
           </div>
         </div>
       </div>
 
-      <button class="booking-reserve-btn" onclick="alert('Booking reservation demo: This property is available for your dates!');">
-        Reserve Now
+      <button class="booking-reserve-btn" onclick="alert('Booking reservation demo: This sanctuary is available for your dates!');">
+        Reserve Sanctuary
       </button>
       <p class="text-center text-muted small mt-2 mb-3">You won't be charged yet</p>
 
@@ -279,7 +279,7 @@
           <span>&#8377; 850</span>
         </div>
         <div class="booking-fee-row">
-          <span>Wanderlust service fee</span>
+          <span>Wanderlust concierge fee</span>
           <span>&#8377; 650</span>
         </div>
         <div class="booking-fee-row">
@@ -295,12 +295,12 @@
       <!-- Trust Badges -->
       <div class="mt-4 pt-3 border-top text-muted small">
         <div class="d-flex align-items-center gap-2 mb-2">
-          <i class="fa-solid fa-shield-halved text-success"></i>
-          <span>Wanderlust Cover: 100% Protection on every booking</span>
+          <i class="fa-solid fa-shield-halved text-primary"></i>
+          <span>Wanderlust Guarantee: 100% Protection on every reservation</span>
         </div>
         <div class="d-flex align-items-center gap-2">
-          <i class="fa-solid fa-lock text-success"></i>
-          <span>Secure payments encrypted with 256-bit SSL</span>
+          <i class="fa-solid fa-lock text-primary"></i>
+          <span>End-to-end 256-bit encrypted checkout</span>
         </div>
       </div>
     </div>

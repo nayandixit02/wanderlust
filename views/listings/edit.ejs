@@ -6,9 +6,9 @@
       <div class="brand-icon-wrapper mx-auto mb-3">
         <i class="fa-solid fa-pen-to-square"></i>
       </div>
-      <h2 class="form-header-title">Edit Listing Details</h2>
+      <h2 class="form-header-title">Edit Sanctuary Details</h2>
       <p class="form-header-subtitle">
-        Update your property information, adjust pricing, or upload a new photo.
+        Update your property information, pricing, or upload a new high-resolution photo.
       </p>
     </div>
 
@@ -21,7 +21,7 @@
     >
       <!-- Title -->
       <div class="form-group-custom">
-        <label for="title" class="form-label-custom">Listing Title</label>
+        <label for="title" class="form-label-custom">Sanctuary Title</label>
         <input
           type="text"
           name="listing[title]"
@@ -54,7 +54,7 @@
           <img src="<%= originalImageUrl %>" alt="Listing Image" style="width: 100%; height: 180px; object-fit: cover;" />
         </div>
 
-        <label class="form-label-custom mt-3">Upload New Image (Optional)</label>
+        <label class="form-label-custom mt-3">Upload New Photo (Optional)</label>
         <div class="file-upload-zone">
           <input
             type="file"
@@ -67,7 +67,7 @@
             <i class="fa-solid fa-camera"></i>
           </div>
           <div class="file-upload-text" id="fileUploadText">Click or drag new image to replace current photo</div>
-          <div class="file-upload-hint">Leave blank to keep current photo</div>
+          <div class="file-upload-hint">Leave blank to keep existing photo</div>
         </div>
         <div id="imagePreviewBox" class="image-preview-box">
           <img id="imagePreviewImg" src="" alt="New Selected Preview" />
@@ -78,7 +78,7 @@
       <div class="row g-3">
         <div class="col-md-5">
           <div class="form-group-custom">
-            <label for="price" class="form-label-custom">Price (&#8377; / night)</label>
+            <label for="price" class="form-label-custom">Nightly Rate (&#8377;)</label>
             <input
               type="number"
               name="listing[price]"
