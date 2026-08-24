@@ -1,51 +1,29 @@
 <% layout("/layouts/boilerplate") %>
 
-<!-- Cinematic Hero Section (Matching Reference Style) -->
-<section class="hero-cinematic">
-  <div class="hero-cinematic-overlay"></div>
-  <div class="hero-cinematic-content">
+<!-- Full Viewport Cinematic Hero Section -->
+<section class="hero-full-viewport">
+  <div class="hero-full-overlay"></div>
+  <div class="hero-full-content">
     <h1 class="hero-cinematic-title">
-      Unearth Extraordinary Escapes
+      Discover the Extraordinary
     </h1>
     <p class="hero-cinematic-subtitle">
-      Handpicked sanctuaries and immersive journeys crafted for the mindful explorer.
+      Curated journeys and exclusive sanctuaries for the discerning explorer.
     </p>
 
-    <!-- 4-Part Glassmorphic Floating Search Box -->
-    <form class="hero-glass-searchbar" action="/listings" method="GET">
-      <!-- 1. Where to? -->
-      <div class="search-field-pill">
+    <!-- Single Location Glassmorphic Search Box -->
+    <form class="hero-single-searchbar" action="/listings" method="GET">
+      <div class="search-field-pill-single">
         <i class="fa-solid fa-location-dot"></i>
         <input
           type="text"
-          name="q"
-          placeholder="Where to? (e.g. Goa, Alps, Bali)"
+          name="location"
+          placeholder="Where do you want to explore? (e.g. Goa, Bali, Paris, Swiss Alps)"
           required
+          autocomplete="off"
         />
       </div>
-
-      <!-- 2. Check in - Check out -->
-      <div class="search-field-pill">
-        <i class="fa-regular fa-calendar"></i>
-        <input
-          type="text"
-          placeholder="Check in - Check out"
-          onfocus="(this.type='date')"
-          onblur="(this.type='text')"
-        />
-      </div>
-
-      <!-- 3. Guests -->
-      <div class="search-field-pill">
-        <i class="fa-solid fa-user-group"></i>
-        <input
-          type="text"
-          placeholder="Guests (e.g. 2 Guests)"
-        />
-      </div>
-
-      <!-- 4. Search Button -->
-      <button type="submit" class="search-btn-gradient">
+      <button type="submit" class="search-btn-gradient-single">
         <i class="fa-solid fa-magnifying-glass"></i>
         <span>Search</span>
       </button>
@@ -88,7 +66,7 @@
           <i class="fa-solid fa-mountain"></i>
         </div>
         <h6 class="category-name">Alpine Cabins</h6>
-        <span class="category-count">High-altitude escapes</span>
+        <span class="category-count">Mountain escapes</span>
       </a>
     </div>
 
@@ -124,10 +102,10 @@
   </div>
 </section>
 
-<!-- The Wanderlust Difference -->
+<!-- The Exploro Difference -->
 <section class="my-5 py-4">
   <div class="section-header text-center">
-    <span class="section-tag">The Wanderlust Standard</span>
+    <span class="section-tag">The Exploro Standard</span>
     <h2 class="section-title">Designed for Unrivaled Peace of Mind</h2>
     <p class="section-subtitle">Every stay is backed by our authentic quality commitment and guest care</p>
   </div>
@@ -183,12 +161,12 @@
   </div>
 </section>
 
-<!-- Wanderlust Your Home - Host CTA Banner -->
+<!-- Exploro Your Home - Host CTA Banner -->
 <section class="host-cta-banner">
   <div class="row align-items-center position-relative" style="z-index: 2;">
     <div class="col-lg-8">
       <span class="badge bg-primary px-3 py-2 rounded-pill fw-bold text-white mb-3">Host Community</span>
-      <h3 class="host-cta-title">Wanderlust your home and earn seamlessly</h3>
+      <h3 class="host-cta-title">Exploro your home and earn seamlessly</h3>
       <p class="host-cta-desc">
         Share your unique villa, loft, or sanctuary with travelers from around the world. Enjoy full insurance coverage, flexible calendar controls, and top earnings.
       </p>

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   WANDERLUST - BESPOKE LUXURY TRAVEL DESIGN SYSTEM
+   EXPLORO - BESPOKE LUXURY TRAVEL DESIGN SYSTEM
    Supports Light & Dark Modes with Instant Theme Switching
    ========================================================================== */
 
@@ -11,8 +11,8 @@
   --primary-light: #e0f2fe;
   --primary-gradient: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
   --accent-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
-  --hero-glass-bg: rgba(255, 255, 255, 0.82);
-  --hero-glass-border: rgba(255, 255, 255, 0.45);
+  --hero-glass-bg: rgba(255, 255, 255, 0.85);
+  --hero-glass-border: rgba(255, 255, 255, 0.5);
   
   /* Canvas & Surfaces */
   --bg-body: #f8fafc;
@@ -35,7 +35,7 @@
   --footer-bg: #ffffff;
   --footer-border: #e2e8f0;
   
-  /* Shadows & Highlights */
+  /* Shadows */
   --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
@@ -51,7 +51,7 @@
   --primary-light: rgba(56, 189, 248, 0.15);
   --primary-gradient: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
   --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
-  --hero-glass-bg: rgba(15, 23, 42, 0.82);
+  --hero-glass-bg: rgba(15, 23, 42, 0.85);
   --hero-glass-border: rgba(255, 255, 255, 0.15);
   
   /* Canvas & Surfaces */
@@ -324,26 +324,27 @@ a {
 }
 
 /* ==========================================================================
-   CINEMATIC HERO SECTION (MATCHING ATTACHED REFERENCE IMAGE)
+   CINEMATIC FULL-VIEWPORT HERO SECTION
    ========================================================================== */
 
-.hero-cinematic {
+.hero-full-viewport {
   position: relative;
-  min-height: 540px;
-  border-radius: 28px;
-  overflow: hidden;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  min-height: calc(100vh - 5rem);
   background-image: url("/images/hero_mountain.jpg");
   background-size: cover;
-  background-position: center 38%;
+  background-position: center 42%;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1.5rem;
-  margin-bottom: 4rem;
+  margin-bottom: 4.5rem;
   box-shadow: var(--shadow-xl);
 }
 
-.hero-cinematic-overlay {
+.hero-full-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -352,110 +353,101 @@ a {
   background: linear-gradient(
     180deg,
     rgba(11, 17, 32, 0.45) 0%,
-    rgba(11, 17, 32, 0.25) 50%,
+    rgba(11, 17, 32, 0.2) 45%,
     rgba(11, 17, 32, 0.65) 100%
   );
   pointer-events: none;
 }
 
-.hero-cinematic-content {
+.hero-full-content {
   position: relative;
   z-index: 2;
   text-align: center;
-  max-width: 960px;
+  max-width: 860px;
   width: 100%;
-  padding: 3.5rem 1.5rem;
+  padding: 4rem 1.5rem;
   color: #ffffff;
 }
 
 .hero-cinematic-title {
-  font-size: 3.65rem;
+  font-size: 3.75rem;
   font-weight: 800;
   letter-spacing: -1.2px;
   line-height: 1.15;
-  margin-bottom: 1rem;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  margin-bottom: 1.15rem;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
 }
 
 .hero-cinematic-subtitle {
-  font-size: 1.25rem;
+  font-size: 1.28rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.92);
-  margin-bottom: 3rem;
-  max-width: 680px;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 3.25rem;
+  max-width: 650px;
   margin-left: auto;
   margin-right: auto;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
-/* Glassmorphism Floating Search Box */
-.hero-glass-searchbar {
+/* Single Location Glassmorphic Search Bar */
+.hero-single-searchbar {
   background: var(--hero-glass-bg);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
   border: 1px solid var(--hero-glass-border);
-  border-radius: 20px;
-  padding: 1rem 1.25rem;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  border-radius: 9999px;
+  padding: 0.65rem 0.75rem 0.65rem 1.75rem;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 650px;
+  margin: 0 auto;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-single-searchbar:hover,
+.hero-single-searchbar:focus-within {
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.search-field-pill-single {
   display: flex;
   align-items: center;
   gap: 0.85rem;
-  max-width: 880px;
-  margin: 0 auto;
-  transition: all 0.3s ease;
-}
-
-.hero-glass-searchbar:hover {
-  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.45);
-}
-
-.search-field-pill {
   flex: 1;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 0.75rem 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
   text-align: left;
-  transition: all 0.2s ease;
-  position: relative;
 }
 
-.search-field-pill:focus-within,
-.search-field-pill:hover {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px var(--primary-light);
-}
-
-.search-field-pill i {
+.search-field-pill-single i {
   color: var(--primary);
-  font-size: 1.1rem;
+  font-size: 1.35rem;
   flex-shrink: 0;
 }
 
-.search-field-pill input {
+.search-field-pill-single input {
   border: none;
   background: transparent;
   outline: none;
-  width: 100%;
-  font-size: 0.95rem;
+  font-size: 1.08rem;
   font-weight: 600;
   color: var(--text-main);
+  width: 100%;
 }
 
-.search-field-pill input::placeholder {
+.search-field-pill-single input::placeholder {
   color: var(--text-subtle);
   font-weight: 500;
+  font-size: 1rem;
 }
 
-.search-btn-gradient {
+.search-btn-gradient-single {
   background: var(--primary-gradient);
   color: #ffffff !important;
   border: none;
-  border-radius: 12px;
-  padding: 0.85rem 2rem;
+  border-radius: 9999px;
+  padding: 0.95rem 2.25rem;
   font-size: 1.05rem;
   font-weight: 700;
   display: inline-flex;
@@ -467,9 +459,9 @@ a {
   white-space: nowrap;
 }
 
-.search-btn-gradient:hover {
+.search-btn-gradient-single:hover {
   filter: brightness(1.1);
-  transform: translateY(-2px);
+  transform: scale(1.02);
   box-shadow: 0 10px 25px rgba(2, 132, 199, 0.5);
 }
 
@@ -554,7 +546,7 @@ a {
   font-weight: 500;
 }
 
-/* Why Choose Wanderlust Features */
+/* Why Choose Exploro Features */
 .feature-card {
   background: var(--bg-surface);
   border-radius: 20px;
@@ -1606,17 +1598,8 @@ a {
   .hero-cinematic-title {
     font-size: 2.75rem;
   }
-  .hero-glass-searchbar {
-    flex-direction: column;
-    border-radius: 18px;
-    padding: 1.25rem;
-  }
-  .search-field-pill {
-    width: 100%;
-  }
-  .search-btn-gradient {
-    width: 100%;
-    justify-content: center;
+  .hero-single-searchbar {
+    padding: 0.5rem 0.5rem 0.5rem 1.25rem;
   }
   .sticky-booking-card {
     position: static;
@@ -1625,15 +1608,27 @@ a {
 }
 
 @media (max-width: 767px) {
-  .hero-cinematic {
-    min-height: 480px;
-    border-radius: 20px;
+  .hero-full-viewport {
+    min-height: calc(100vh - 4rem);
   }
   .hero-cinematic-title {
     font-size: 2.15rem;
   }
   .hero-cinematic-subtitle {
     font-size: 1.05rem;
+  }
+  .hero-single-searchbar {
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+  .search-field-pill-single {
+    width: 100%;
+  }
+  .search-btn-gradient-single {
+    width: 100%;
+    justify-content: center;
   }
   .filter-bar-wrapper {
     flex-direction: column;

@@ -8,19 +8,25 @@
   const themeIcon = document.getElementById("themeIcon");
 
   function getStoredTheme() {
-    return localStorage.getItem("wanderlust-theme") || "light";
+    return (
+      localStorage.getItem("exploro-theme") ||
+      localStorage.getItem("wanderlust-theme") ||
+      "light"
+    );
   }
 
   function applyTheme(theme) {
     document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("wanderlust-theme", theme);
+    localStorage.setItem("exploro-theme", theme);
     if (themeIcon) {
       if (theme === "dark") {
         themeIcon.className = "fa-solid fa-sun text-warning";
-        if (themeToggleBtn) themeToggleBtn.setAttribute("title", "Switch to Light Mode");
+        if (themeToggleBtn)
+          themeToggleBtn.setAttribute("title", "Switch to Light Mode");
       } else {
         themeIcon.className = "fa-solid fa-moon text-primary";
-        if (themeToggleBtn) themeToggleBtn.setAttribute("title", "Switch to Dark Mode");
+        if (themeToggleBtn)
+          themeToggleBtn.setAttribute("title", "Switch to Dark Mode");
       }
     }
   }
@@ -31,7 +37,8 @@
 
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener("click", () => {
-      const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+      const currentTheme =
+        document.documentElement.getAttribute("data-theme") || "light";
       const nextTheme = currentTheme === "dark" ? "light" : "dark";
       applyTheme(nextTheme);
     });
@@ -123,7 +130,8 @@
         reader.onload = (e) => {
           previewImg.src = e.target.result;
           previewBox.style.display = "block";
-          if (uploadText) uploadText.innerText = "Selected: " + this.files[0].name;
+          if (uploadText)
+            uploadText.innerText = "Selected: " + this.files[0].name;
         };
         reader.readAsDataURL(this.files[0]);
       }

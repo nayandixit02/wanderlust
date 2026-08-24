@@ -1,8 +1,24 @@
 const Listing = require("../models/listing");
 
 module.exports.index = async (req, res, next) => {
-  const allListings = await Listing.find();
-  res.render("listings/index.ejs", { allListings });
+  let { q, location, category } = req.query;
+  let searchFilter = {};
+  let queryTerm = location || q;
+
+  if (queryTerm && queryTerm.trim() !== "") {
+    let term = queryTerm.trim();
+    searchFilter = {
+      $or: [
+        { location: { $regex: term, $options: "i" } },
+        { country: { $regex: term, $options: "i" } },
+        { title: { $regex: term, $options: "i" } },
+        { description: { $regex: term, $options: "i" } },
+      ],
+    };
+  }
+
+  const allListings = await Listing.find(searchFilter);
+  res.render("listings/index.ejs", { allListings, searchLocation: queryTerm || "" });
 };
 
 module.exports.renderNewForm = (req, res) => {
@@ -21,13 +37,12 @@ module.exports.showListing = async (req, res, next) => {
     .populate("owner");
   if (!listing) {
     req.flash("error", "Listing doesn't exist!");
-    res.redirect("/listings");
+    return res.redirect("/listings");
   }
   res.render("listings/show.ejs", { listing });
 };
 
 module.exports.createListing = async (req, res, next) => {
-  // let {title, description, image, price, country, loacation} = req.body;
   let url = req.file.path;
   let filename = req.file.filename;
   let listing = req.body.listing;
@@ -35,7 +50,7 @@ module.exports.createListing = async (req, res, next) => {
   newListing.owner = req.user._id;
   newListing.image = { url, filename };
   await newListing.save();
-  req.flash("success", "New Listing Created!");
+  req.flash("success", "New Sanctuary Created!");
   res.redirect("/listings");
 };
 
@@ -44,7 +59,7 @@ module.exports.renderEditForm = async (req, res, next) => {
   const listing = await Listing.findById(id);
   if (!listing) {
     req.flash("error", "Listing doesn't exist!");
-    res.redirect("/listings");
+    return res.redirect("/listings");
   }
 
   let originalImageUrl = listing.image.url;
@@ -64,7 +79,7 @@ module.exports.updateListing = async (req, res, next) => {
     await listing.save();
   }
 
-  req.flash("success", "Listing Updated!");
+  req.flash("success", "Sanctuary Updated!");
   res.redirect(`/listings/${id}`);
 };
 
@@ -72,6 +87,6 @@ module.exports.destroyListing = async (req, res, next) => {
   let { id } = req.params;
   let deletedListing = await Listing.findByIdAndDelete(id);
   console.log(deletedListing);
-  req.flash("success", "Listing Deleted!");
+  req.flash("success", "Sanctuary Deleted!");
   res.redirect("/listings");
 };
